@@ -1,0 +1,30 @@
+---
+- name: Install PHP-FPM
+  apt:
+    name: php-fpm
+    state: latest
+
+- name: Create PHP-FPM config file from template
+  template:
+    src: php-fpm.conf.j2
+    dest: /etc/php/{{ php_version }}/fpm/pool.d/{{ php_pool }}.conf
+
+- name: Copy INFO.PHP
+  template:
+    src: info.php
+    dest: /var/www/{{ php_pool }}/info.php
+
+- name: Copy php-fpm.service.j2
+  template:
+    src: php-fpm.service.j2
+    dest: /lib/systemd/system/php{{ php_version }}-fpm.service
+
+- name: Reload systemd configuration
+  systemd:
+    daemon_reload: yes
+
+- name: Reload PHP-FPM
+  service:
+    name: php{{ php_version }}-fpm
+    state: reloaded
+

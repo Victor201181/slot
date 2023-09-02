@@ -1,0 +1,14 @@
+[Unit]
+Description=The PHP {{ php_version }} FastCGI Process Manager
+Documentation=man:php-fpm{{ php_version }}(8)
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/php-fpm{{ php_version }} --nodaemonize --fpm-config /etc/php/{{ php_version }}/fpm/pool.d/{{ php_pool }}.conf
+ExecStartPost=-/usr/lib/php/php-fpm-socket-helper install /run/php/{{ php_socket }}.sock /etc/php/{{ php_version }}/fpm/pool.d/{{ php_pool }}.conf 74
+ExecStopPost=-/usr/lib/php/php-fpm-socket-helper remove /run/php/{{ php_socket }}.sock /etc/php/{{ php_version }}/fpm/pool.d/{{ php_pool }}.conf 74
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

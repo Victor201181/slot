@@ -1,0 +1,31 @@
+---
+- name: Create domain directory
+  file:
+    path: /var/www/{{ domain }}
+    state: directory
+
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Create Nginx config file from template
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/{{ domain }}
+
+- name: Create symbolic link to enable site
+  file:
+    src: /etc/nginx/sites-available/{{ domain }}
+    dest: /etc/nginx/sites-enabled/{{ domain }}
+    state: link
+
+- name: Remove default Nginx configuration
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Reload Nginx
+  service:
+    name: nginx
+    state: reloaded

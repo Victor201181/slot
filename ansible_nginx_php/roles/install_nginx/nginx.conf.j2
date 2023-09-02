@@ -1,0 +1,29 @@
+server {
+    listen 80;
+    server_name {{ server_name }};
+    root /var/www/{{ domain }};
+
+    {% if enable_https %}
+    listen 443 ssl;
+    ssl_certificate /etc/ssl/certs/{{ domain }}.crt;
+    ssl_certificate_key /etc/ssl/private/{{ domain }}.key;
+    {% endif %}
+
+    location / {
+        index index.php info.php index.html index.htm;
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    {% if enable_php %}
+    location ~ \.php$ {
+        fastcgi_pass unix:/run/php/{{ php_socket }}.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+    location /info.php {
+        fastcgi_pass unix:/run/php/{{ php_socket }}.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root/info.php;
+        include fastcgi_params;
+    }
+    {% endif %}
+}
