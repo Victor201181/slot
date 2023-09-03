@@ -1,6 +1,6 @@
 # Test task DevOps.
 
-## 1. Iptables
+## 1. [Iptables](https://github.com/Victor201181/slot/tree/main/iptables)
 
 - устанавливаем ulogd2
 ```bash
@@ -16,7 +16,7 @@ sudo bash iptables.sh
 ```
 ВНИМАНИЕ!!! Будьте осторожны при применении этих правил, чтобы не заблокировать доступ к серверу.
 
-## 2. Ansible role nginx and PHP
+## 2. [Ansible role nginx and PHP](https://github.com/Victor201181/slot/tree/main/ansible_nginx_php)
 
 - домен из /ansible_nginx_php/vars/common_vars.yml добавляем в /etc/hosts
 - запускаем плейбук
@@ -25,7 +25,7 @@ sudo ansible-playbook main.yml -vvv
 ```
 - проверяем в браузере по адресу ```http://<domain>:8080/info.php``` или ```curl http://localhost:8080/info.php```
 
-## 3. Script_backup_logrotate.
+## 3. [Script_backup_logrotate](https://github.com/Victor201181/slot/tree/main/script_backup_logrotate)
 
 ## 3.1 Скрипт full_inc_backup.py с возможностью полного и инкрементного бекапирования директории с удаленного сервера (в виде архива)
 
