@@ -18,7 +18,7 @@ sudo bash iptables.sh
 
 ## 2. [Ansible role nginx and PHP](https://github.com/Victor201181/slot/tree/main/ansible_nginx_php)
 
-- домен из /ansible_nginx_php/vars/common_vars.yml добавляем в /etc/hosts
+- домен из ```/ansible_nginx_php/vars/common_vars.yml``` добавляем в ```/etc/hosts```
 - запускаем плейбук
 ```bash
 sudo ansible-playbook main.yml -vvv
@@ -56,16 +56,16 @@ python3 full_inc_backup.py 123.123.123.123 /remote/path/backup /local/path/backu
 sudo bash logrotate_full_backup.sh /home/ubuntu/backup/Full /home/ubuntu/backup/FullOld
 ```
 где 
-- /home/ubuntu/backup/Full/ директория, где будет постоянно храниться последний полный бекап
+- ```/home/ubuntu/backup/Full/``` директория, где будет постоянно храниться последний полный бекап
 
-- /home/ubuntu/backup/FullOld директория куда копируются полные бекапы после запуска скрипта full_inc_backup.py именно эти файлы ротируются
+- ```/home/ubuntu/backup/FullOld``` директория куда копируются полные бекапы после запуска скрипта ```full_inc_backup.py``` именно эти файлы ротируются
 
-Для проверки работы, после запуска скрипта logrotate_full_backup.sh, используем команду 
+Для проверки работы, после запуска скрипта ```logrotate_full_backup.sh```, используем команду 
 
 ```bash
 sudo logrotate -vf /etc/logrotate.d/fullold_backup.conf
 ```
 
-после этого в директории /home/ubuntu/backup/Full появится файл newest_full_backup.tar.gz (это последний, самый новый полный бекап из директории /home/ubuntu/backup/FullOld).
+после этого в директории ```/home/ubuntu/backup/Full``` появится файл ```newest_full_backup.tar.gz``` (это последний, самый новый полный бекап из директории ```/home/ubuntu/backup/FullOld```).
 
-С инкрементным скриптом logrotate_inc_backup.sh аналогично.
+С инкрементным скриптом ```logrotate_inc_backup.sh``` аналогично.
