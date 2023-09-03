@@ -55,9 +55,10 @@ python3 full_inc_backup.py 123.123.123.123 /remote/path/backup /local/path/backu
 ```bash
 sudo bash logrotate_full_backup.sh /home/ubuntu/backup/Full /home/ubuntu/backup/FullOld
 ```
-где /home/ubuntu/backup/Full/ директория, где будет постоянно храниться последний полный бекап
+где 
+- /home/ubuntu/backup/Full/ директория, где будет постоянно храниться последний полный бекап
 
-    /home/ubuntu/backup/FullOld директория куда копируются полные бекапы после запуска скрипта full_inc_backup.py именно эти файлы ротируются
+- /home/ubuntu/backup/FullOld директория куда копируются полные бекапы после запуска скрипта full_inc_backup.py именно эти файлы ротируются
 
 Для проверки работы, после запуска скрипта logrotate_full_backup.sh, используем команду 
 
