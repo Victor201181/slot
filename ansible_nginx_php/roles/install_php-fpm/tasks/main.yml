@@ -9,15 +9,23 @@
     src: php-fpm.conf.j2
     dest: /etc/php/{{ php_version }}/fpm/pool.d/{{ php_pool }}.conf
 
-- name: Copy INFO.PHP
+- name: Copy info.php
   template:
     src: info.php
-    dest: /var/www/{{ php_pool }}/info.php
+    dest: /var/www/{{ domain }}/info.php
 
 - name: Copy php-fpm.service.j2
   template:
     src: php-fpm.service.j2
     dest: /lib/systemd/system/php{{ php_version }}-fpm.service
+
+- name: Create PHP-FPM log directory
+    file:
+      path: /var/log/php-fpm/
+      state: directory
+      owner: www-data
+      group: www-data
+      mode: "0755"
 
 - name: Reload systemd configuration
   systemd:

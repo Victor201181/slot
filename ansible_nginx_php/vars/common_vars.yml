@@ -1,15 +1,15 @@
 ---
 
 # nginx vars
-domain: "www.888.com"
-server_name: "www.888.com"
+domain: "www.999.com"
+server_name: "www.999.com"
 enable_https: false
 enable_php: true
 generate_sslcerts: false
 
 # php vars
-php_pool: "www.888.com"
-php_socket: "www.888.com"
+php_pool: "www.999.com"
+php_socket: "www.999.com"
 php_version: "7.4"
 pm_max_children: 5
 pm_start_servers: 2
